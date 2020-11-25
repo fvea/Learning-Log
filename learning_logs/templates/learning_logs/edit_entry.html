@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% extends 'learning_logs/base.html '%}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Edit entry:</h2>
+{% endblock header %}
+
+{% block content %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>
+        <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+      </h3>
+    </div>
+  </div><!--panel-->
+
+  <form action="{% url 'learning_logs:new_entry' topic.id %}" method="POST"
+    class="form">
+      {% csrf_token %}
+      {% bootstrap_form form%}
+
+      {% buttons %}
+        <button name="submit" class="btn btn-primary">Save changes</button>
+      {% endbuttons %}
+  </form>
+
+{% endblock content %}
